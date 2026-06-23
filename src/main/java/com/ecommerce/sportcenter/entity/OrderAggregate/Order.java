@@ -32,9 +32,8 @@ public class Order {
     private Double subTotal;
     @Column(name="Delivery_Fee")
     private Long deliveryFee;
-    @Enumerated(EnumType.STRING)
     @Column(name="Order_Status")
-    private OrderStatus orderStatus = OrderStatus.Pending;
+private String orderStatus = "Pending";
     public Double getTotal() {
         return getSubTotal()+getDeliveryFee();
     }
