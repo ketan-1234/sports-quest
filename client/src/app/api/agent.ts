@@ -7,7 +7,7 @@ import { Product } from "../models/product";
 import { Basket } from "../models/basket";
 
 // axios.defaults.baseURL ='http://localhost:8282/api/';
-axios.defaults.baseURL ='https://sports-quest.onrender.com/';
+axios.defaults.baseURL = 'https://sports-quest.onrender.com/api/';
 
 const idle = () => new Promise(resolve => setTimeout(resolve, 100));
 const responseBody = (response: AxiosResponse) => response.data;
