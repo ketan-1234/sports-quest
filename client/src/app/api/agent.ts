@@ -40,7 +40,7 @@ const requests = {
 }
 
 const Store = {
-    apiUrl: 'http://localhost:8282/api/products',
+  apiUrl: 'https://sports-quest.onrender.com/api/products',
     list:(page: number, size: number, brandId?: number, typeId?: number, url?: string)=> {
       let requestUrl = url || `products?page=${page-1}&size=${size}`;
       if(brandId!==undefined){
