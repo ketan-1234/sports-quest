@@ -18,10 +18,11 @@ export default function Order(){
     if (loading) return <Spinner message="Loading orders..."/>
     
     // Function to convert order date to formatted string
-    function formatDate(orderDateArray:any) {
-        if (!Array.isArray(orderDateArray) || orderDateArray.length < 3) {
-            return "Invalid Date";
-        }
+    function formatDate(orderDate: string) {
+        if (!orderDate) return "N/A";
+    
+        return new Date(orderDate.slice(0, 23)).toLocaleDateString('en-GB');
+    }
     
         const [year, month, day] = orderDateArray;
         const formattedDate = `${String(day).padStart(2, '0')}-${String(month).padStart(2, '0')}-${year}`;
