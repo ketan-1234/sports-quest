@@ -24,8 +24,8 @@ public class Order {
     private String basketId;
     @Embedded
     private ShippingAddress shippingAddress;
-    @Column(name="Order_Date")
-    private LocalDateTime orderDate = LocalDateTime.now();
+    @Column(name="Order_Date", columnDefinition = "DATETIME")
+private LocalDateTime orderDate = LocalDateTime.now();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderItem> orderItems;
     @Column(name="Sub_Total")
