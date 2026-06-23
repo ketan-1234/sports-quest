@@ -29,17 +29,22 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests((requests)->requests
-                        .requestMatchers("/products").authenticated()
-                        .requestMatchers("/auth/login").permitAll()
-                        .anyRequest().permitAll())
-                .exceptionHandling(ex-> ex.authenticationEntryPoint(entryPoint))
-                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    http
+            .cors(cors -> {})
+            .csrf(AbstractHttpConfigurer::disable)
+            .authorizeHttpRequests((requests)->requests
+                    .requestMatchers("/products").authenticated()
+                    .requestMatchers("/auth/login").permitAll()
+                    .anyRequest().permitAll())
+            .exceptionHandling(ex -> ex.authenticationEntryPoint(entryPoint))
+            .sessionManagement(session ->
+                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+    http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+
+    return http.build();
+}
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception{
         return authenticationManagerBuilder.getObject();
