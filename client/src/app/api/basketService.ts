@@ -6,7 +6,7 @@ import { setBasket } from "../../features/basket/basketSlice";
 import { createId } from "@paralleldrive/cuid2";
 
 class BasketService {
-    apiUrl = "http://localhost:8282/api/baskets";
+    apiUrl = 'https://sports-quest.onrender.com/api/baskets';
 
     async getBasketFromApi(){
         try{
