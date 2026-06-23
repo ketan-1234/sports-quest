@@ -21,13 +21,8 @@ export default function Order(){
     function formatDate(orderDate: string) {
         if (!orderDate) return "N/A";
     
-        return new Date(orderDate.slice(0, 23)).toLocaleDateString('en-GB');
+        return new Date(orderDate.substring(0, 19)).toLocaleDateString('en-GB');
     }
-    
-        const [year, month, day] = orderDateArray;
-        const formattedDate = `${String(day).padStart(2, '0')}-${String(month).padStart(2, '0')}-${year}`;
-        return formattedDate;
-    }  
     
     
     

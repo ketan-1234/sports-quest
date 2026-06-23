@@ -2,7 +2,7 @@ export interface Order{
     id: number
     basketId: string
     shippingAddress: ShippingAddress
-    orderDate: Date
+    orderDate: string
     orderStatus: string
     subTotal: number
     deliveryFee: number
