@@ -74,17 +74,30 @@ export const accountSlice = createSlice({
             state.error = null;
         }
     },
-    extraReducers:(builder=>{
-        builder.addMatcher(isAnyOf(signInUser.fulfilled, fetchCurrentUser.fulfilled), (state, action)=>{
-            state.user = action.payload;
-            state.error = null;
-            toast.success('Sign in successful');
-        });
-        builder.addMatcher(isAnyOf(signInUser.rejected, fetchCurrentUser.rejected, logoutUser.fulfilled), (state, action)=>{
-            const payload = action.payload as string | null;
-            state.error = payload;
-            toast.success('Sign in failed. Please try again');
-        });
-    })
-})
-export const {logOut, clearError} = accountSlice.actions;
+    extraReducers: (builder) => {
+        builder.addMatcher(
+            isAnyOf(signInUser.fulfilled),
+            (state, action) => {
+                state.user = action.payload;
+                state.error = null;
+                toast.success('Sign in successful');
+            }
+        );
+    
+        builder.addMatcher(
+            isAnyOf(
+                signInUser.rejected,
+                fetchCurrentUser.rejected,
+                logoutUser.fulfilled
+            ),
+            (state, action) => {
+                const payload = action.payload as string | null;
+                state.error = payload;
+                toast.error('Sign in failed. Please try again');
+            }
+        );
+    }
+    });
+    
+    export const {logOut, clearError} = accountSlice.actions;
+    export default accountSlice.reducer;
